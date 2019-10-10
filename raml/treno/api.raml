@@ -1,0 +1,29 @@
+#%RAML 1.0
+title: treno
+baseUri: /treno
+
+types:
+  treno:
+    properties:
+      codice: string
+      from: string
+      to: string
+      dataPartenza: datetime-only
+      dataArrivo: datetime-only
+    example:
+      "codice": "RV2812",
+      "from": "Verona",
+      "to": "Bolzano",
+      "dataPartenza":12-09-2019-12-00-00,
+      "dataArrivo": 12-09-2019-15-00-00
+
+resorceTypes:
+  GET:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: <<item>>
+  /{id}:
+    type: { GET: {item : treno } }

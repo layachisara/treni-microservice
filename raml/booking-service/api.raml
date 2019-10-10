@@ -1,0 +1,59 @@
+#%RAML 1.0
+title: Booking Service
+version: v1
+baseUri: /booking
+
+types:
+    User:
+    properties:
+      name: string
+      lastname: string
+      email: string
+      creditcard: object
+      phoneNumber?: string
+      membership?: number
+
+  Ticket:
+    properties:
+      codiceTreno: string
+      from: string
+      to: string
+      seat: string
+      classe: string
+      DataArrivo: datetime-only
+      DataPartenza: datetime-only
+      orderId: string
+
+resourceTypes:
+  GET:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+
+  POST:
+    post:
+      body:
+        application/json:
+          type: <<item>>
+          type: <<item2>>
+      responses:
+        201:
+          body:
+            application/json:
+              type: <<item3>>
+
+
+/:
+  type:   { POST: {item2 : User, item3: Ticket} }
+  description: The booking service need a Booking object that contains all
+    the needed information to make a purchase of train tickets.
+    Needs a user information to make the booking succesfully.
+    And returns a ticket object.
+
+  /verify/{orderId}:
+    type:  { GET: {item : Ticket} }
+    description: This route is for verify orders, and would return all the details
+      of a specific purchased by orderid.

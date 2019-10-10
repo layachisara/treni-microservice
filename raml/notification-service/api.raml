@@ -1,0 +1,45 @@
+#%RAML 1.0
+title: Booking Service
+version: v1
+baseUri: /notification
+
+types:
+  Treno:
+    properties:
+      codice: string
+      from: string
+      to: string
+      dataPartenza: datetime-only
+      dataArrivo: datetime-only
+  User:
+    properties:
+      name: string
+      email: string
+
+  Payload:
+    properties:
+      city: string
+      userType: string
+      treno: Treno
+      orderId: string
+      description: string
+      user: User
+
+resourceTypes:
+  POST:
+    post:
+      body:
+        application/json:
+          type: <<item>>
+      responses:
+        201:
+          body:
+            application/json:
+              type: object
+
+
+/sendEmail:
+  type:   { POST: {item : Payload} }
+
+/sendSMS:
+  type:   { POST: {item : Payload} }

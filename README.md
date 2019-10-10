@@ -10,14 +10,14 @@ A basic Train microservice api with booking service, payment service, and notifi
 - Docker for Mac 1.13.0
 
 ### Microservice structure 
-1. raml/              # api design
-2. repository/ 	      # abstraction over db (where we do our query’s to the database)
-    .spec.js          # test
+1. raml/                # api design
+2. repository/ 	        # abstraction over db (where we do our query’s to the database)
+    .spec.js            # test
 3. server/ 		        # server setup code (instanting new express app, applying middlewares, exporting start function)
-4. api/ 		          # creating the routes for our API
+4. api/ 		        # creating the routes for our API
 5. config/ 		        # configuration file for the app
-6. index.js 		      # main entrypoint of the app (putting together everything)
-7. package.json       # dependencies
+6. index.js 		    # main entrypoint of the app (putting together everything)
+7. package.json         # dependencies
 8. integration-test/  
 
 ### Microservices
